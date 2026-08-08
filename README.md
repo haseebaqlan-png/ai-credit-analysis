@@ -1,9 +1,23 @@
-# AI Credit Analysis V5.1 — Offline Core
+# AI Credit Analysis MVP 1.0 — Mobile Upload Edition
 
-No OpenAI subscription or API key is required.
+هذه النسخة مخصصة للرفع من الهاتف. لا ترفع أي مجلدات.
 
-Supports Excel/XLSX, CSV, text PDFs, Word and TXT. It performs financial spreading, ratios, DSCR, facility sizing, collateral constraints, stress tests, consistency checks, trend charts, audit trail and indicative IFRS 9 metrics.
+## ارفع هذه الملفات الخمسة فقط إلى جذر GitHub
+- main.py
+- Dockerfile
+- requirements.txt
+- README.md
+- SECURITY.md
 
-For best extraction accuracy use Excel/CSV. Scanned/image PDFs require a separate OCR layer in a later release.
+`main.py` يحتوي داخله على قاعدة التطبيق، الواجهة، قوالب HTML، CSS، محرك الاستخراج، محرك التحليل الائتماني وإخراج PDF. عند التشغيل ينشئ المجلدات التشغيلية تلقائياً.
 
-This is a decision-support prototype. Production banking use requires validation, bank-policy calibration, access control, audit logging, security/privacy review and human approval.
+## وظائف MVP
+تسجيل مستخدم، العملاء، طلبات التمويل، رفع القوائم، استخراج البيانات، Verification، أكثر من 20 نسبة مالية، Trend Analysis، Credit Score، Risk Analysis، Credit Memo، PDF، بنية API Cost، Dashboard.
+
+## Railway
+أضف متغيراً واحداً على الأقل:
+`APP_SECRET=<قيمة عشوائية طويلة>`
+
+لا يحتاج `OPENAI_API_KEY`.
+
+ملاحظة: SQLite والتخزين المحلي مناسبان لمرحلة الاختبار. قبل الإنتاج سننقل PostgreSQL والتخزين الدائم.

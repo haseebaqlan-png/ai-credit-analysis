@@ -1,4 +1,2 @@
-# Security
-No external AI API key is required.
-
-Before production use implement authentication/MFA, RBAC, encryption, audit logs, malware scanning, retention/deletion controls, DLP, backups, monitoring, incident response and independent model/rule validation.
+# Security Baseline
+Pilot only. Before production: strong APP_SECRET, HTTPS-only cookies, PostgreSQL, encrypted persistent storage, MFA/RBAC, malware scanning, immutable audit logs, DLP, retention/deletion controls, CSRF hardening, rate limiting, backups, monitoring, security testing and independent model/rule validation.
