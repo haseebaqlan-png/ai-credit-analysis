@@ -1,71 +1,33 @@
-# AI Credit Analysis V4 — Document-First Credit Underwriting
+# AI Credit Analysis V5 — AI-Powered Corporate Underwriting
 
-AI Credit Analysis V4 is a document-first corporate credit underwriting and decision-support prototype.
+V5 turns the project into an AI-assisted, document-first corporate credit underwriting prototype.
 
-## Core workflow
+## Capabilities
+- OpenAI Responses API integration.
+- Direct PDF/image understanding plus local normalization for Excel, Word, CSV and text.
+- Multi-year financial spreading and visual trend charts.
+- Evidence/confidence audit trail.
+- Ratios, working capital, cash-flow/DSCR, facility sizing and collateral analysis.
+- 5Cs, management/governance, stress testing, IFRS 9 indicators.
+- AI-generated Arabic committee memorandum.
+- Risks, mitigants, conditions, covenants, early warnings and committee questions.
+- Human review remains mandatory.
 
-**Upload Documents → Classify → Extract → Validate → Financial Spreading → Credit Analysis → Risk Review → Credit Memorandum**
+## Railway variables
+Add in Railway → Service → Variables:
+- `OPENAI_API_KEY` = secret API key. Never commit it to GitHub.
+- `OPENAI_MODEL` = `gpt-5` (optional default)
+- `MAX_FILE_MB` = `15`
+- `MAX_TOTAL_MB` = `40`
 
-The platform is designed to reduce manual re-keying and preserve an audit trail from each extracted field back to its source document/location.
+## Production warning
+Before live customer data is uploaded, the institution must approve provider use, privacy/data classification, retention/deletion, data residency, encryption, RBAC/MFA, audit logging, DLP, vendor risk, model governance and validation.
 
-## V4 capabilities
+The application uses `store=False` for Responses API calls. This does not replace an institutional privacy review.
 
-- Multi-file upload for financial and credit documents.
-- Parsing of XLSX/XLSM, text-based PDF, DOCX, CSV, and TXT.
-- Automatic document classification.
-- Extraction of core borrower, financial, facility, and collateral fields.
-- Confidence score and source trace for extracted values.
-- Human validation/edit step before underwriting.
-- Financial ratios and cash-flow-first debt-service assessment.
-- Working-capital cycle and external funding need.
-- Facility sizing based on the tightest constraint: cash flow, leverage, working capital, and collateral.
-- Collateral haircut and legal-enforceability controls.
-- Stress testing.
-- Indicative IFRS 9 staging / PD-LGD-EAD-ECL support fields (not calibrated regulatory estimates).
-- Draft credit memorandum for committee review.
-- Health and capabilities endpoints.
-
-## Privacy and confidentiality
-
-The public application, README, source comments, and user interface contain no customer names or case-specific confidential information.
-
-The prototype processes uploaded files inside the web request and does not intentionally persist them in a database. Production use requires bank-approved controls for encryption, retention, access control, audit logs, data residency, secrets management, backups, and incident response.
-
-## Important limitation
-
-Scanned/image-only PDFs require an OCR/document-AI layer in production. V4 currently extracts text from machine-readable PDFs and structured Office files.
-
-## Risk-governance principles
-
-The design follows a repayment-capacity-first approach: collateral is a risk mitigant, not a substitute for a sound assessment of the borrower. It also separates automated extraction/scoring from human approval authority.
-
-Reference frameworks:
-- Basel Committee on Banking Supervision, *Principles for the Management of Credit Risk* (30 April 2025): https://www.bis.org/bcbs/publ/d595.htm
-- Basel Framework, credit risk mitigation / legal enforceability: https://www.bis.org/basel_framework/chapter/CRE/22.htm
-- IFRS 9 Financial Instruments: https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/
-
-## Run locally
-
+## Run
 ```bash
 pip install -r requirements.txt
-uvicorn app:app --reload
+export OPENAI_API_KEY="..."
+uvicorn main:app --reload
 ```
-
-Open http://127.0.0.1:8000
-
-## Railway
-
-The included `Dockerfile` listens on `$PORT`, so it can be deployed using the existing Railway service.
-
-## Production roadmap
-
-1. OCR/document AI for scanned Arabic/English files.
-2. Multi-year financial statement spreading with reconciliation checks.
-3. Bank-statement transaction analytics and cash-flow reconstruction.
-4. Borrower/group exposure and concentration analysis.
-5. Policy/rule engine by product, sector, grade, and delegated authority.
-6. Role-based approval workflow, maker-checker controls, and immutable audit log.
-7. Calibrated PD/LGD/EAD/ECL models with model governance and validation.
-8. Exportable PDF/DOCX credit memorandum and committee pack.
-9. Database layer with encryption, tenancy, retention, and access policies.
-10. Integration APIs for core banking, credit bureau, KYC/AML, collateral, and document repositories.
