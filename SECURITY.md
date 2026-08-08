@@ -1,4 +1,4 @@
 # Security
-Never store `OPENAI_API_KEY` in source code or GitHub. Use Railway Variables/secrets.
+No external AI API key is required.
 
-Production banking controls should include encryption, MFA/RBAC, segregation of duties, immutable audit logging, malware scanning, tenant isolation, secrets management, retention/deletion, DLP, data residency, monitoring, incident response, backup/recovery, vendor risk and model governance.
+Before production use implement authentication/MFA, RBAC, encryption, audit logs, malware scanning, retention/deletion controls, DLP, backups, monitoring, incident response and independent model/rule validation.
